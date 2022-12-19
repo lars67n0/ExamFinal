@@ -1,0 +1,47 @@
+﻿@page
+@model BookListFinal.Pages.Educations.EducationsIndexModel
+@{
+}
+<h1>List Of Educations</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class=" table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Educations[0].EducationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Educations[0].CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Educations[0].ClassName)
+            </th>
+
+            <th></th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Educations)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EducationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClassName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }

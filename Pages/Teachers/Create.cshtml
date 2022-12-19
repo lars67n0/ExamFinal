@@ -1,0 +1,48 @@
+﻿@page
+@model BookListFinal.Pages.Teachers.TeacherCreateModel
+@{
+}
+
+<h1>Create</h1>
+
+<h4>Teacher</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Teachers.FirstName" class="control-label"></label>
+                <input asp-for="Teachers.FirstName" class="form-control" />
+                <span asp-validation-for="Teachers.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Teachers.LastName" class="control-label"></label>
+                <input asp-for="Teachers.LastName" class="form-control" />
+                <span asp-validation-for="Teachers.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Teachers.Initialer" class="control-label"></label>
+                <input asp-for="Teachers.Initialer" class="form-control" />
+                <span asp-validation-for="Teachers.Initialer" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create Teacher" class="btn btn-primary" />
+
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@*@section scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScripsPartial");
+    }
+    }*@

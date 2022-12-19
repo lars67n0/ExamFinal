@@ -5,27 +5,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using BookApp.Data;
 
-
-namespace BookListFinal.Pages.Books
+namespace BookListFinal.Pages.Educations
 {
-    public class BookIndexModel : PageModel
+    public class EducationsIndexModel : PageModel
     {
         private readonly BookApp.Data.BookListAppDbContext _context;
 
-        public BookIndexModel(BookApp.Data.BookListAppDbContext context)
+        public EducationsIndexModel(BookApp.Data.BookListAppDbContext context)
         {
             _context = context;
         }
 
-        public IList<BookApp.Data.Book> Books { get; set; }
+        public IList<BookApp.Data.Education> Educations { get; set; }
 
         public async Task OnGetAsync()
         {
-            Books = await _context.Books.ToListAsync();
+            Educations = await _context.Educations.ToListAsync();
         }
-
     }
 }
-

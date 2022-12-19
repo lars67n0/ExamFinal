@@ -1,0 +1,47 @@
+﻿@page
+@model BookListFinal.Pages.Classes.ClassCreateModel
+@{
+}
+<h1>Create</h1>
+
+<h4>Classes</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Classes.ClassName" class="control-label"></label>
+                <input asp-for="Classes.ClassName" class="form-control" />
+                <span asp-validation-for="Classes.ClassName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Classes.SemesterYear" class="control-label"></label>
+                <input asp-for="Classes.SemesterYear" class="form-control" />
+                <span asp-validation-for="Classes.SemesterYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Classes.TeacherName" class="control-label"></label>
+                <input asp-for="Classes.TeacherName" class="form-control" />
+                <span asp-validation-for="Classes.TeacherName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create Class" class="btn btn-primary" />
+
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@*@section scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScripsPartial");
+    }
+    }*@
