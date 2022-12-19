@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookListFinal", "BookListFi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookApp.Data", "..\BookApp.Data\BookApp.Data.csproj", "{653F954C-62DF-4BF9-A0E1-2B2A356FD9FB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{7B9C3A38-F4B2-4EF3-9BE4-FDEFC4C58926}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,10 +24,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{B268E949-07BB-4BB2-8584-F8801FC3F47D} = {7B9C3A38-F4B2-4EF3-9BE4-FDEFC4C58926}
-		{653F954C-62DF-4BF9-A0E1-2B2A356FD9FB} = {7B9C3A38-F4B2-4EF3-9BE4-FDEFC4C58926}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFBA8718-5913-4069-BEB7-2BD25A4DCF1B}
