@@ -1,0 +1,51 @@
+﻿@page
+@model BookListFinal.Pages.Educations.EducationUpdateModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update Educations</h1>
+
+<h4>Educations</h4>
+<hr />
+
+<div class="row">
+    <div class=" col-md-4">
+
+        <form method="post">
+            <div asp-validation-summary="All" class=" text-danger">
+                <input type="hidden" asp-for=" Educations.Id" />
+
+                <div class=" form-group">
+                    <label asp-for="Educations.EducationName" class="control-label"></label>
+                    <input asp-for=" Educations.EducationName" class=" form-control" />
+                    <span asp-validation-for="Educations.EducationName" class=" text-danger"></span>
+                </div>
+
+                <div class=" form-group">
+                    <label asp-for="Educations.CourseName" class="control-label"></label>
+                    <input asp-for=" Educations.CourseName" class=" form-control" />
+                    <span asp-validation-for="Educations.CourseName" class=" text-danger"></span>
+                </div>
+
+                <div class=" form-group">
+                    <label asp-for="Educations.ClassName" class="control-label"></label>
+                    <input asp-for=" Educations.ClassName" class=" form-control" />
+                    <span asp-validation-for="Educations.ClassName" class=" text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Save Changes" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <hr />
+</div>
+<h5>Return To List</h5>
+<div>
+    <a asp-page=" ./index">Back To List</a>
+</div>

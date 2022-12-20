@@ -1,0 +1,44 @@
+﻿@page
+@model BookListFinal.Pages.Classes.ClassDeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete Class</h1>
+
+<h3> Are You Sure you want to Delete this?</h3>
+
+<div>
+    <h4>Class : </h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Classes.ClassName)
+        </dt>
+        <dd class=" col-sm-10">
+            @Html.DisplayFor(model => model.Classes.ClassName)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Classes.SemesterYear)
+        </dt>
+        <dd class=" col-sm-10">
+            @Html.DisplayFor(model => model.Classes.SemesterYear)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Classes.TeacherName)
+        </dt>
+        <dd class=" col-sm-10">
+            @Html.DisplayFor(model => model.Classes.TeacherName)
+        </dd>
+
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Classes.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-page="./Index">Back To List</a>
+    </form>
+</div>

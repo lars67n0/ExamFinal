@@ -1,0 +1,44 @@
+﻿@page
+@model BookListFinal.Pages.Courses.CoursesUpdateModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update Courses</h1>
+
+<h4>Courses :</h4>
+<hr />
+
+<div class="row">
+    <div class=" col-md-4">
+
+        <form method="post">
+            <div asp-validation-summary="All" class=" text-danger">
+                <input type="hidden" asp-for=" Courses.Id" />
+
+                <div class=" form-group">
+                    <label asp-for="Courses.CourseName" class="control-label"></label>
+                    <input asp-for=" Courses.CourseName" class=" form-control" />
+                    <span asp-validation-for="Courses.CourseName" class=" text-danger"></span>
+                </div>
+
+                <div class=" form-group">
+                    <label asp-for="Courses.TeacherName" class="control-label"></label>
+                    <input asp-for=" Courses.TeacherName" class=" form-control" />
+                    <span asp-validation-for="Courses.TeacherName" class=" text-danger"></span>
+                </div>
+
+            
+
+                <div class="form-group">
+                    <input type="submit" value="Save Changes" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<h5>Return To List</h5>
+<div>
+    <a asp-page=" ./index">Back To List</a>
+</div>
