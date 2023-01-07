@@ -56,7 +56,7 @@ namespace BookListFinal.Pages.Books
             //{
             //    throw;
             //}
-            await Ig.UpdateItemAsync(Ig);
+            await Ig.UpdateItemAsync2(Books);
             return RedirectToPage("./Index");
         }
 

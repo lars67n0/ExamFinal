@@ -61,7 +61,7 @@ namespace BookListFinal.Pages.Teachers
             //    throw;
             //}
 
-            await Ig.UpdateItemAsync(Ig);
+            await Ig.UpdateItemAsync2(Teachers);
             return RedirectToPage("./Index");
         }
     }

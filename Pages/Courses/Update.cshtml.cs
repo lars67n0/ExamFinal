@@ -58,7 +58,7 @@ namespace BookListFinal.Pages.Courses
             //{
             //    throw;
             //}
-            await Ig.UpdateItemAsync(Ig);
+            await Ig.UpdateItemAsync2(Courses);
 
             return RedirectToPage("./Index");
         }
