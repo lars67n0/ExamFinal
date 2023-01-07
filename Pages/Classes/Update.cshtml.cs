@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookApp.Data;
+using BookApp.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,51 +12,56 @@ namespace BookListFinal.Pages.Classes
 {
     public class ClassUpdateModel : PageModel
     {
-        private readonly BookApp.Data.BookListAppDbContext _context;
+        //private readonly BookApp.Data.BookListAppDbContext _context;
 
-        public ClassUpdateModel(BookApp.Data.BookListAppDbContext context)
+        [BindProperty]
+        public BookApp.Data.Class Classes { get; set; }
+        public IClassInterface Ig { get; set; }
+
+        public ClassUpdateModel(IClassInterface _Ig)
         {
-            _context = context;
+            Ig = _Ig;
         }
 
         // Proctecting Agaist Overposting tror jeg
 
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            Classes = await _context.Classes.FirstOrDefaultAsync(m => m.Id == id);
+            //Classes = await _context.Classes.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Classes == null)
-            {
-                return NotFound();
-            }
+            //if (Classes == null)
+            //{
+            //    return NotFound();
+            //}
+            Classes = await Ig.GetItemAsyncById(id);
+            
             return Page();
         }
 
-        [BindProperty]
-        public BookApp.Data.Class Classes { get; set; }
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
-            _context.Attach(Classes).State = EntityState.Modified;
+            //_context.Attach(Classes).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch
-            {
-                throw;
-            }
+            //try
+            //{
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch
+            //{
+            //    throw;
+            //}
+            await Ig.UpdateItemAsync(Ig);
 
             return RedirectToPage("./Index");
         }

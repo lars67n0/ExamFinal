@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookApp.Data;
+using BookApp.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,51 +12,56 @@ namespace BookListFinal.Pages.Educations
 {
     public class EducationUpdateModel : PageModel
     {
-        private readonly BookApp.Data.BookListAppDbContext _context;
+        //private readonly BookApp.Data.BookListAppDbContext _context;
+        [BindProperty]
+        public BookApp.Data.Education Educations { get; set; }
+        public IEducationInterface Ig { get; set; }
 
-        public EducationUpdateModel(BookApp.Data.BookListAppDbContext context)
+        public EducationUpdateModel(IEducationInterface _Ig)
         {
-            _context = context;
+            Ig = _Ig;
         }
 
         // Proctecting Agaist Overposting tror jeg
 
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            Educations = await _context.Educations.FirstOrDefaultAsync(m => m.Id == id);
+            //Educations = await _context.Educations.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Educations == null)
-            {
-                return NotFound();
-            }
+            //if (Educations == null)
+            //{
+            //    return NotFound();
+            //}
+            Educations = await Ig.GetItemAsyncById(id);
             return Page();
         }
 
-        [BindProperty]
-        public BookApp.Data.Education Educations { get; set; }
+
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
-            _context.Attach(Educations).State = EntityState.Modified;
+            //_context.Attach(Educations).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch
-            {
-                throw;
-            }
+            //try
+            //{
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch
+            //{
+            //    throw;
+            //}
+
+            await Ig.UpdateItemAsync(Ig);
 
             return RedirectToPage("./Index");
         }

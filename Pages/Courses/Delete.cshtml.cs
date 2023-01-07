@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookApp.Data;
+using BookApp.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,48 +12,51 @@ namespace BookListFinal.Pages.Courses
 {
     public class CourseDeleteModel : PageModel
     {
-        private readonly BookApp.Data.BookListAppDbContext _context;
+        //private readonly BookApp.Data.BookListAppDbContext _context;
 
-        public CourseDeleteModel(BookApp.Data.BookListAppDbContext context)
+        [BindProperty]
+        public BookApp.Data.Course Courses { get; set; }
+        public IGenericInterface<Course> Ig { get; set; }
+        public CourseDeleteModel(IGenericInterface<Course> _Ig)
         {
-            _context = context;
+            Ig = _Ig;
         }
 
         // Proctecting Agaist Overposting tror jeg
 
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            Courses = await _context.Courses.FirstOrDefaultAsync(m => m.Id == id);
+            //Courses = await _context.Courses.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Courses == null)
-            {
-                return NotFound();
-            }
+            //if (Courses == null)
+            //{
+            //    return NotFound();
+            //}
+            Courses = await Ig.GetItemAsyncById(id);
             return Page();
         }
 
-        [BindProperty]
-        public BookApp.Data.Course Courses { get; set; }
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            Courses = await _context.Courses.FindAsync(id);
+            //Courses = await _context.Courses.FindAsync(id);
 
-            if (Courses != null)
-            {
-                _context.Courses.Remove(Courses);
-                await _context.SaveChangesAsync();
-            }
+            //if (Courses != null)
+            //{
+            //    _context.Courses.Remove(Courses);
+            //    await _context.SaveChangesAsync();
+            //}
+            await Ig.DeleteItemsAsync(Courses);
 
             return RedirectToPage("./Index");
         }

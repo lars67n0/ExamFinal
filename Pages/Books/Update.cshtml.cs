@@ -1,4 +1,5 @@
 using BookApp.Data;
+using BookApp.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -8,52 +9,54 @@ namespace BookListFinal.Pages.Books
 {
     public class BookUpdateModel : PageModel
     {
-        private readonly BookApp.Data.BookListAppDbContext _context;
+        //private readonly BookApp.Data.BookListAppDbContext _context;
 
-        public BookUpdateModel(BookApp.Data.BookListAppDbContext context)
+        [BindProperty]
+        public BookApp.Data.Book Books { get; set; }
+        public IBookInterface Ig { get; set; }
+        public BookUpdateModel(IBookInterface _Ig)
         {
-            _context = context;
+            Ig = _Ig;
         }
 
         // Proctecting Agaist Overposting tror jeg
         
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            Books = await _context.Books.FirstOrDefaultAsync(m => m.Id == id);
+            //Books = await _context.Books.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Books == null)
-            {
-                return NotFound();
-            }
+            //if (Books == null)
+            //{
+            //    return NotFound();
+            //}
+         Books= await Ig.GetItemAsyncById(id);
             return Page();
         }
 
-        [BindProperty]
-        public BookApp.Data.Book Books { get; set; }
         public async Task<IActionResult> OnPostAsync()
         {
-            if(!ModelState.IsValid)
-            {
-                return Page();
-            }
+            //if(!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
-            _context.Attach(Books).State = EntityState.Modified;
+            //_context.Attach(Books).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch
-            {
-                throw;
-            }
-
+            //try
+            //{
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch
+            //{
+            //    throw;
+            //}
+            await Ig.UpdateItemAsync(Ig);
             return RedirectToPage("./Index");
         }
 

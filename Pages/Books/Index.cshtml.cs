@@ -6,24 +6,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BookApp.Data;
-
+using BookApp.Data.Interfaces;
 
 namespace BookListFinal.Pages.Books
 {
     public class BookIndexModel : PageModel
-    {
-        private readonly BookApp.Data.BookListAppDbContext _context;
 
-        public BookIndexModel(BookApp.Data.BookListAppDbContext context)
-        {
-            _context = context;
-        }
+    {
+        [BindProperty(SupportsGet = true)]
+        //private readonly BookApp.Data.BookListAppDbContext _context;
 
         public IList<BookApp.Data.Book> Books { get; set; }
+        public IBookInterface Ig { get; set; }
+        public BookIndexModel(IBookInterface _Ig)
+        {
+            Ig = _Ig;
+        }
+
+        //public IEnumerable<Book> Ebooks { get; set; }
 
         public async Task OnGetAsync()
         {
-            Books = await _context.Books.ToListAsync();
+            Books = await Ig.GetItemsAsync();
+
         }
 
     }

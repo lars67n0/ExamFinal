@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions;
+using BookApp.Data.Interfaces;
+using BookApp.Data.GenericService;
+using System.Reflection;
 
 namespace BookListFinal
 {
@@ -33,6 +36,23 @@ namespace BookListFinal
             });
 
             services.AddRazorPages();
+            //services.AddTransient<IGenericInterface<>, GenericService<>>();
+            //services.AddTransient<IGenericInterface<Class>, GenericService<Class>>();
+            //services.AddTransient<IGenericInterface<Course>, GenericService<Course>>();
+            //services.AddTransient<IGenericInterface<Education>, GenericService<Education>>();
+            //services.AddTransient<IGenericInterface<Teacher>, GenericService<Teacher>>();
+            //services.AddTransient(typeof(IGenericInterface<Book>), typeof(GenericService<Book>));
+            services.AddTransient<ITeacherInterface, TeacherService>();
+            services.AddTransient<IKoordinatorInterface, KoordinatorService>();
+            services.AddTransient<IClassInterface, ClassService>();
+            services.AddTransient<IEducationInterface, EducationService>();
+            services.AddTransient<IBookInterface, BookService>();
+            services.AddTransient<ICourseInterface, CourseService>();
+
+
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
