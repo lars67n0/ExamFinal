@@ -16,8 +16,8 @@ namespace BookListFinal.Pages.Courses
 
         [BindProperty]
         public BookApp.Data.Course Courses { get; set; }
-        public IGenericInterface<Course> Ig { get; set; }
-        public CourseDeleteModel(IGenericInterface<Course> _Ig)
+        public ICourseInterface Ig { get; set; }
+        public CourseDeleteModel(ICourseInterface _Ig)
         {
             Ig = _Ig;
         }
